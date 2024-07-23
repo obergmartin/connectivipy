@@ -196,7 +196,7 @@ class Data(object):
         '''
         connobj = conn_estim_dc[method]()
         self._parameters.update(params)
-        arg = inspect.getargspec(connobj.calculate)
+        arg = inspect.getfullargspec(connobj.calculate)
         newparams = self.__make_params_dict(arg[0])
         if "p" not in self._parameters:
             if "order" in params:
@@ -246,7 +246,7 @@ class Data(object):
         '''
         connobj = conn_estim_dc[self._parameters["method"]]()
         self._parameters.update(params)
-        arg = inspect.getargspec(connobj.calculate)
+        arg = inspect.getfullargspec(connobj.calculate)
         newparams = self.__make_params_dict(arg[0])
         if not self.__multitrial:
             if isinstance(connobj, ConnectAR):
@@ -300,7 +300,7 @@ class Data(object):
             no = self._parameters["no"]
         connobj = conn_estim_dc[self._parameters["shorttime"]]()
         self._parameters.update(params)
-        arg = inspect.getargspec(connobj.calculate)
+        arg = inspect.getfullargspec(connobj.calculate)
         newparams = self.__make_params_dict(arg[0])
         if self.__multitrial:
             temp_dat = self.__data[self._channels, :, :]
